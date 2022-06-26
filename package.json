@@ -4,7 +4,8 @@
   "description": "this is a dance academy",
   "main": "app.js",
   "scripts": {
-    "nodemon": "nodemon app.js"
+    "nodemon": "nodemon app.js",
+    "start": "node /app.js"
   },
   "author": "Gopal",
   "license": "ISC",
