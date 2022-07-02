@@ -4,12 +4,19 @@ const fs = require("fs");
 const app = express();
 var mongoose = require('mongoose');
 const bodyparser = require("body-parser");
-mongoose.connect('mongodb+srv://gopalgoyal012:Gopal@1234#@cluster0.48ehi.mongodb.net/contactDance?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology: true}); 
+const bodyParser = require("body-parser");
+mongoose.connect('mongodb+srv://gopalgoyal012:Gopal@1234#@cluster0.48ehi.mongodb.net/contactDance',{
+    useNewUrlParser:true,
+    useUnifiedTopology: true
+}).then(()=>
+console.log("Connected successfully")).catch((err)=>
+console.log(err)); 
 const port  = process.env.PORT || 8000;
 
 //for serving static file
 app.use('/static',express.static('static')) 
-app.use(express.urlencoded())
+// app.use(express.urlencoded())
+app.use(bodyParser.json());
 
 //define mongoose schema
 var contactSchema = new mongoose.Schema({                          //making a schema
