@@ -7,7 +7,7 @@ h1{
     margin-top: 10px;
 }
 .form{
-    min-height: 72.5vh;
+    min-height: 72.5vh; 
 }
 .myclass{
     display: flex;

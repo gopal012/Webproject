@@ -4,7 +4,7 @@ const fs = require("fs");
 const app = express();
 var mongoose = require('mongoose');
 const bodyparser = require("body-parser");
-mongoose.connect('mongodb://localhost/contactDance',{useNewUrlParser:true,useUnifiedTopology: true}); 
+mongoose.connect('mongodb://localhost:27017/contactDance',{useNewUrlParser:true,useUnifiedTopology: true}); 
 const port  = process.env.PORT || 8000;
 
 //for serving static file
@@ -32,6 +32,18 @@ app.set('views',path.join(__dirname,'views'))
 app.get('/',(req,res)=>{
     const params = {};
     res.status(200).render('home.pug',params);
+})
+app.get('/aboutus',(req,res)=>{
+    const params = {};
+    res.status(200).render('aboutus.pug',params); 
+})
+app.get('/services',(req,res)=>{
+    const params = {};
+    res.status(200).render('services.pug',params);
+})
+app.get('/gallery',(req,res)=>{
+    const params = {};
+    res.status(200).render('gallery.pug',params);
 })
 app.get('/contact',(req,res)=>{
     const params = {};
