@@ -2,25 +2,25 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const app = express();
-// var mongoose = require('mongoose');
-// const bodyparser = require("body-parser");
-// mongoose.connect('mongodb://localhost:27017/contactDance',{useNewUrlParser:true,useUnifiedTopology: true}); 
+var mongoose = require('mongoose');
+const bodyparser = require("body-parser");
+mongoose.connect('mongodb+srv://gopalgoyal012:Gopal@1234#@cluster0.48ehi.mongodb.net/contactDance?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology: true}); 
 const port  = process.env.PORT || 8000;
 
 //for serving static file
 app.use('/static',express.static('static')) 
-// app.use(express.urlencoded())
+app.use(express.urlencoded())
 
 //define mongoose schema
-// var contactSchema = new mongoose.Schema({                          //making a schema
-//     name: String,
-//     age: String,
-//     email: String,
-//     contactno: String
-// });
+var contactSchema = new mongoose.Schema({                          //making a schema
+    name: String,
+    age: String,
+    email: String,
+    contactno: String
+});
 
 //making schema to model
-// var contact = mongoose.model('dancecontact' , contactSchema);   
+var contact = mongoose.model('dancecontact' , contactSchema);   
 
 //set the template engine as pug
 app.set('view engine','pug')
@@ -50,15 +50,15 @@ app.get('/contact',(req,res)=>{
     res.status(200).render('contact.pug',params);
 })
 
-// app.post('/contact',(req,res)=>{
-//     var mydata = new contact(req.body);
-//     mydata.save().then(()=>{
-//         res.send("This item is saved to our db")
-//     }).catch(()=>{
-//         res.status(400).send("item was not saved to our db")
-//     })
+app.post('/contact',(req,res)=>{
+    var mydata = new contact(req.body);
+    mydata.save().then(()=>{
+        res.send("This item is saved to our db")
+    }).catch(()=>{
+        res.status(400).send("item was not saved to our db")
+    })
     
-// })
+})
 
 app.listen(port,()=>{
     console.log(`the application started at port ${port}`); 
